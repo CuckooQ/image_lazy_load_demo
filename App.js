@@ -35,11 +35,18 @@ class App {
 
     return `
       <button class="get-btn">고양이 가져오기</button>
+      <div>
       ${cats
         .map(({ id, url }) => {
-          return `<img id=${id} class="lazy" data-src=${url} >`;
+          return `
+          <div class="cat-container">
+            <img id=${id} alt="" class="lazy" data-src=${url} >
+            <span>${id}</span>
+          </div>`;
         })
-        .join("")}`;
+        .join("")}
+      </div>
+      `;
   }
 
   async mounted() {}
