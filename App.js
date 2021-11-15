@@ -25,9 +25,12 @@ class App {
 
   setEvent() {
     this.target.addEventListener("click", this.click.bind(this));
-    // document.addEventListener("scroll", this.lazyload.bind(this));
-    // window.addEventListener("resize", this.lazyload.bind(this));
-    // window.addEventListener("orientationChange", this.lazyload.bind(this));
+
+    if (!("IntersectionObserver" in window)) {
+      document.addEventListener("scroll", this.lazyload.bind(this));
+      window.addEventListener("resize", this.lazyload.bind(this));
+      window.addEventListener("orientationChange", this.lazyload.bind(this));
+    }
   }
 
   template() {
@@ -62,25 +65,6 @@ class App {
       this.setState({ cats: res.data });
       this.lazyload();
     }
-  }
-
-  lazyload() {
-    const lazyLoadImgEls = document.querySelectorAll("img.lazy");
-
-    const imgObserver = IntersectionObserver((entries, _observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const imgEl = entry.target;
-          imgEl.src = imgEl.dataset.src;
-          imgEl.classList.remove("lazy");
-          imgObserver.unobserve(imgEl);
-        }
-      });
-    });
-
-    lazyLoadImgEls.forEach((imgEl) => {
-      imgObserver.observe(imgEl);
-    });
   }
 
   lazyload() {
