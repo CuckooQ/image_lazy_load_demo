@@ -25,9 +25,9 @@ class App {
 
   setEvent() {
     this.target.addEventListener("click", this.click.bind(this));
-    document.addEventListener("scroll", this.lazyload.bind(this));
-    window.addEventListener("resize", this.lazyload.bind(this));
-    window.addEventListener("orientationChange", this.lazyload.bind(this));
+    // document.addEventListener("scroll", this.lazyload.bind(this));
+    // window.addEventListener("resize", this.lazyload.bind(this));
+    // window.addEventListener("orientationChange", this.lazyload.bind(this));
   }
 
   template() {
